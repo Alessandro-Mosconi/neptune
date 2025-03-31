@@ -10,7 +10,7 @@
 Use a custom KinD configuration and image to enable in-place vertical scaling.
 
 ```shell
-kind create cluster --config config/cluster-conf/kind.conf --image systemautoscaler/kindest-node
+kind create cluster --config config/cluster-conf/kind.conf --image kindest/node:v1.27.0
 ```
 
 ### Install Custom Resources
@@ -29,7 +29,7 @@ kubectl apply -f config/permissions
 
 ### Allow scheduling on kind-control-plane
 ```shell
-kubectl taint node kind-control-plane node-role.kubernetes.io/master:NoSchedule-
+kubectl taint node kind-control-plane node-role.kubernetes.io/control-plane:NoSchedule-
 kubectl label nodes kind-control-plane node-role.kubernetes.io/master=true --overwrite
 ```
 
